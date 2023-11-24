@@ -82,7 +82,7 @@ const usuariosDelete = async (req, res) => {
     const id = req.params.id;
     console.log('Id del params: ', id)
    
-    const usuarioEliminado = await Usuario.findByIdAndUpdate(id,{estado:false})
+   await Usuario.findByIdAndUpdate(id,{estado:false})
 
     res.json({ msg: 'Usuario Eliminado' })
 }
