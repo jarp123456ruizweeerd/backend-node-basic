@@ -1,11 +1,17 @@
 const express = require('express');
 // const app = express();
 const cors = require('cors');
+const {coneccion} = require('../db/config'); 
+
 class Server {
 
     constructor() {
         this.app = express();
         this.port = process.env.PORT;
+
+        //Llamado a la bd
+        this.connectar();
+
 
         //Midelware
         this.midlewares()
@@ -15,6 +21,9 @@ class Server {
 
     }
 
+    async connectar(){
+        await coneccion();
+    }
 
     midlewares() {
         this.app.use(cors());
