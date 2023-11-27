@@ -19,7 +19,7 @@ const validarId = async (id) => {
     
     const idEliminar = await Usuario.findById(id); 
     if(!idEliminar){
-        throw new Error (`Este usuario (${idEliminar}) no existe en la BD`);
+        throw new Error (`Este usuario ${id} no existe en la BD`);
     }
 }
 

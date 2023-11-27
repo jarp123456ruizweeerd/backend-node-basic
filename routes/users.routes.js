@@ -8,10 +8,6 @@ const router = Router();
 router.get('/', usuariosGet);
 
 router.post('/', [
-    check('id', 'NO es un id valido').isMongoId(),
-    check('id').custom((id) => {
-        validarId(id);
-    }),
     check('nombre', 'Nombre requerido').not().isEmpty(),
     check('correo', 'Correo Invalido').isEmail(),
     check('correo').custom((c) => validarEmail(c)),
