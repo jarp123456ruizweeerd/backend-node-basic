@@ -43,7 +43,7 @@ const usuariosPost = async (req, res) => {
 
     const { nombre, correo, password, rol } = req.body;
     const usuario = Usuario({ nombre, correo, password, rol });
-
+    
 
     //Encriptar contraseña
     const encrip = bcryptjs.genSaltSync();
@@ -74,17 +74,20 @@ const usuariosPut = async (req, res) => {
     res.json({ msg: 'put API', usuarioActualizado })
 }
 
-const usuariosPatch = (req, res) => {
+const usuariosPatch = (req, res) => { 
     res.json({ msg: 'patch API' })
-}
+} 
 
-const usuariosDelete = async (req, res) => {
+const usuariosDelete = async (req = request, res = response) => {
     const id = req.params.id;
-    console.log('Id del params: ', id)
+    console.log('Id del params: ', id);
    
-   await Usuario.findByIdAndUpdate(id,{estado:false})
+    const usuarioEliminado = await Usuario.findByIdAndUpdate(id, {estado:false});
 
-    res.json({ msg: 'Usuario Eliminado' })
+    const usuarioAuth = req.usuarioAuth;
+
+    // console.log('Request: ', req)
+    res.json({ msg: 'Usuario Eliminado', usuarioEliminado, usuarioAuth  })
 }
 
 
