@@ -79,7 +79,7 @@ const usuariosPatch = (req, res) => {
 } 
 
 const usuariosDelete = async (req = request, res = response) => {
-    const id = req.params.id;
+    const id = req.paxrams.id;
     console.log('Id del params: ', id);
    
     const usuarioEliminado = await Usuario.findByIdAndUpdate(id, {estado:false});
